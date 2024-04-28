@@ -1,12 +1,14 @@
 class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
-    @book.user_id = current_user.id
+    @book.user = current_user # 現在のユーザーを書籍の所有者として設定する
+
     if @book.save
-      redirect_to book_path(@book)
+      redirect_to book_path(@book), notice: 'You have created book successfully.' # 保存に成功した場合のリダイレクト先とメッセージ
     else
-      render 'new' 
+      render :new
     end
+    
   end
 
   def index
@@ -23,9 +25,17 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
   
+  def destroy
+    @book = Book.find(params[:id]) # 削除するPostImageレコードを取得
+    @book.destroy # レコードを削除
+    redirect_to books_path # PostImageの一覧ページへのパス
+  end 
+  
+  
+  # ストロングパラメータ
   private
 
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body) # 許可するパラメーターを指定する
   end
 end
