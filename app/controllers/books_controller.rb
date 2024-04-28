@@ -31,6 +31,10 @@ class BooksController < ApplicationController
     redirect_to books_path # PostImageの一覧ページへのパス
   end 
   
+  def update
+     @book = Book.find(params[:id])
+  end
+  
   
   # ストロングパラメータ
   private
