@@ -1,43 +1,8 @@
-<!-- index.html.erb -->
 <div class="container">
   <div class="row">
-    <!-- Left section with user information and new post form -->
-    <div class="col-md-3">
-      <h2>User info</h2>
-      <div id="user-info">
-        <% if current_user.profile_image.attached? %>
-          <%= image_tag current_user.profile_image, class: "img-fluid rounded-circle mb-3" %>
-        <% else %>
-          <%= image_tag 'no_image.jpg', class: "img-fluid rounded-circle mb-3" %>
-        <% end %>
-        
-        <table class="table">
-          <tbody>
-            <tr>
-              <th>Name</th>
-              <th><%= current_user.name %></th>
-            </tr>
-            <tr>
-              <th>Introduction</th>
-              <th><%= current_user.introduction %></th>
-            </tr>
-          </tbody>
-        </table>
+    
+   <%= render 'users/user_info', user: current_user, book: @new_book %>
 
-        <%= link_to(edit_user_path(current_user), class: "btn btn-primary btn-block mb-3") do %>
-          <i class="fa-solid fa-user-gear mr-2"></i> 
-        <% end %>
-      </div>
-
-      <h2 class="mt-5">New Book</h2>
-      <%= form_with model: @new_book, class: "mb-5" do |f| %>
-        <h5>Title</h5>
-        <%= f.text_field :title, class: "form-control mb-2" %>
-        <h5>Opinion</h5>
-        <%= f.text_area :body, class: "form-control mb-2" %>
-        <%= f.submit 'Create Book', class: 'btn btn-success btn-block' %>
-      <% end %>
-    </div>
     
     <!-- Right section with book listing -->
     <div class="col-md-8 offset-md-1">
