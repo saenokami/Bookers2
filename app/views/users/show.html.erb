@@ -1,14 +1,1 @@
-
-<!-- ユーザーの投稿一覧 -->
-
-<% @books.each do |book| %>
-<div>
-  <%= link_to book_path(book.id) do %>
-    
-  <% end %>
-  <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
-  <p>タイトル：<%= book.shop_name %></p>
-  <p>説明：<%= book.caption %></p>
-  <p>ユーザーネーム：<%= book.user.name %></p>
-</div>
-<% end %>
+users/showページ

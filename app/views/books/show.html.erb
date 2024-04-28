@@ -1,24 +1,36 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex align-items-center mb-3">
-            <% if @book.user.profile_image.attached? %>
-              <%= image_tag @book.user.profile_image.variant(resize: "80x80"), class: "avatar mr-3" %>
-            <% else %>
-              <%= image_tag 'no_image.jpg' %>
-            <% end %>
-            <h5 class="card-title"><%= @book.title %></h5>
-          </div>
-          <p class="card-text"><%= @book.body %></p>
-          <p class="card-text"><%= @book.user.name %></p>
-          <div class="d-flex justify-content-end">
-            <%= link_to 'Edit', edit_book_path(@book), class: "btn btn-success mr-2" %>
-            <%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか?' }, class: "btn btn-danger" %>
-          </div>
-        </div>
-      </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+        
+        <tbody>
+          <tr>
+            <td>
+              <% if @book.user.profile_image.attached? %>
+                <%= image_tag @book.user.profile_image.variant(resize: "100x100"), class: "avatar mr-3" %>
+              <% else %>
+                <%= image_tag 'no_image.jpg' %>
+              <% end %>
+              <br>
+              <%= link_to @book.user.name, user_path(@book.user) %>
+            </td>
+            <td>
+              <%= @book.title %>
+            </td>
+            <td>
+              <%= @book.body %>
+            </td>
+            <td>
+              <%= link_to 'Edit', edit_book_path(@book), class: "btn btn-success mr-2" %>
+            </td>
+            <td>
+              <%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか?' }, class: "btn btn-danger" %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
+
