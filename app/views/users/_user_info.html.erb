@@ -5,6 +5,11 @@
   <h2>User info</h2>
   <div id="user-info">
     
+      <% if user.profile_image.attached? %>
+         <%= image_tag user.profile_image.variant(resize: "80x80"), class: "avatar img-fluid rounded-circle" %>
+      <% else %>
+         <%= image_tag 'no_image.jpg', class: "img-fluid rounded-circle" %>
+      <% end %>
     
     <table class="table">
       <tbody>
