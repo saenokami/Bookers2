@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   before_action :set_book, only: [:edit, :update, :destroy]
   
 
@@ -32,7 +32,7 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
-      if current_user != @book
+      if current_user.id != @book.user_id
         flash[:error] = "他人の投稿情報を編集することはできません。"
         redirect_to root_path
       end
