@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-     @user = current_user
+     @user = User.find(params[:id])
   end
   
   def index
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to root_path, notice: 'User info was successfully updated.'
+      redirect_to @user, notice: 'You have updated user successfully.'
     else
       render :edit
     end
