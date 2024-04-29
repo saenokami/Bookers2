@@ -1,3 +1,9 @@
+<% if flash.now[:error].present? %>
+  <div class="alert alert-danger">
+    <%= flash.now[:error] %>
+  </div>
+<% end %>
+
 <div class="container">
   <div class="row">
  

@@ -1,7 +1,10 @@
+
+ 
+ 
 <div class="col-md-3">
   <h2>User info</h2>
   <div id="user-info">
-
+    
     
     <table class="table">
       <tbody>
@@ -24,7 +27,7 @@
   </div>
 
   <h2 class="mt-5">New Book</h2>
-  <%= form_with model: Book.new, class: "mb-5" do |f| %>
+  <%= form_with model: book, class: "mb-5" do |f| %>
     <h5>Title</h5>
     <%= f.text_field :title, class: "form-control mb-2" %>
     <h5>Opinion</h5>

@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
-   before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_book, only: [:edit, :update, :destroy]
+  
+
   
   def create
     @book = Book.new(book_params)
@@ -9,20 +11,23 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to book_path(@book), notice: 'You have created book successfully.' # 保存に成功した場合のリダイレクト先とメッセージ
     else
-      redirect_to books_path
+      @books = Book.all
+      @user_info = current_user 
+      render :index
     end
   end
   
 
   def index
-    @book = Book.new
+   
     @books = Book.all
     @user_info = current_user # ログインしているユーザーの情報
-    @new_book = Book.new # 新しい書籍を作成するための空のBookインスタンス
+    @book = Book.new # 新しい書籍を作成するための空のBookインスタンス
   end
 
   def show
     @book = Book.find(params[:id])
+    @new_book = Book.new
   end
 
   def edit
@@ -38,6 +43,7 @@ class BooksController < ApplicationController
     if @book.update(book_params)
       redirect_to @book, notice: 'You have updated book successfully.'
     else
+      
       render :edit
     end
   end
