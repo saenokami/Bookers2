@@ -34,7 +34,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
       if current_user.id != @book.user_id
         flash[:error] = "他人の投稿情報を編集することはできません。"
-        redirect_to root_path
+        redirect_to books_path
       end
   end
   

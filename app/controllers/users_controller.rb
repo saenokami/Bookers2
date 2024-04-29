@@ -12,7 +12,7 @@ class UsersController < ApplicationController
      @user = User.find(params[:id])
      if current_user != @user
        flash[:error] = "他人のユーザ情報を編集することはできません。"
-       redirect_to root_path
+       redirect_to user_path(current_user.id)
      end
   end
   
