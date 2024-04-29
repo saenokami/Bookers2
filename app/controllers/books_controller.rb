@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  
+  
   def create
     @book = Book.new(book_params)
     @book.user = current_user # 現在のユーザーを書籍の所有者として設定する
