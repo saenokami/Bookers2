@@ -4,28 +4,23 @@
 <div class="col-md-3">
   <h2>User info</h2>
   <div id="user-info">
-    
-      <% if user.profile_image.attached? %>
-         <%= image_tag user.profile_image.variant(resize: "80x80"), class: "avatar img-fluid rounded-circle" %>
-      <% else %>
-         <%= image_tag 'no_image.jpg', class: "img-fluid rounded-circle" %>
-      <% end %>
-    
+    <% if user.profile_image.attached? %>
+      <%= image_tag user.profile_image.variant(resize: "80x80"), class: "avatar img-fluid rounded-circle" %>
+    <% else %>
+      <%= image_tag 'no_image.jpg', class: "img-fluid rounded-circle" %>
+    <% end %>
     <table class="table">
       <tbody>
-       
-       <tr>
-        <th>Name</th>
-        <th><%= user.name %></th>
-       </tr>
-       <tr>
-        <th>Introduction</th>
-        <th><%= user.introduction %></th>
-       </tr>
-        
+        <tr>
+          <th>Name</th>
+          <td><%= user.name %></td>
+        </tr>
+        <tr>
+          <th>Introduction</th>
+          <td><%= user.introduction %></td>
+        </tr>
       </tbody>
     </table>
-
     <%= link_to(edit_user_path(user), class: "btn btn-primary btn-block mb-3") do %>
       <i class="fa-solid fa-user-gear mr-2"></i> 
     <% end %>
@@ -40,3 +35,5 @@
     <%= f.submit 'Create Book', class: 'btn btn-success btn-block' %>
   <% end %>
 </div>
+
+
