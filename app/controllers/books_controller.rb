@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
-
+   before_action :authenticate_user!
+  before_action :set_book, only: [:edit, :update, :destroy]
   
   def create
     @book = Book.new(book_params)
@@ -26,6 +27,10 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+      if current_user != @book
+        flash[:error] = "他人の投稿情報を編集することはできません。"
+        redirect_to root_path
+      end
   end
   
   def update
@@ -49,5 +54,9 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :body) # 許可するパラメーターを指定する
+  end
+  
+  def set_book
+    @book = Book.find(params[:id])
   end
 end
