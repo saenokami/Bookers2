@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   
+  
   def show
     @user = User.find(params[:id])
     @books = @user.books if @user.present?
@@ -8,6 +9,10 @@ class UsersController < ApplicationController
 
   def edit
      @user = User.find(params[:id])
+     if current_user != @user
+       flash[:error] = "他人のユーザ情報を編集することはできません。"
+       redirect_to root_path
+     end
   end
   
   def index
