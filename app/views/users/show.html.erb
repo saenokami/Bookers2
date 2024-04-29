@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    
+
    <%= render 'users/user_info', user: current_user, book: @book %>
-   
-   
+
+
    <div class="col-md-8 offset-md-1">
   <h2>Books</h2>
   <table class="table">
@@ -17,6 +17,8 @@
     <tbody>
       <% if @books.present? %>
         <% @books.each do |book| %>
+
+        <%= link_to user_path(book.user_id) do %>
           <tr>
             <td>
               <% if @user.profile_image.attached? %>
@@ -28,6 +30,8 @@
             <td><%= link_to book.title, book_path(book) %></td>
             <td><%= book.body %></td>
           </tr>
+
+          <% end %>
         <% end %>
       <% else %>
         <tr>
